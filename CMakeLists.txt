@@ -48,7 +48,8 @@ if(APPLE)
 endif()
 
 include(GNUInstallDirs)
-install(TARGETS mongo DESTINATION ${CMAKE_INSTALL_LIBDIR}/lua/${ver})
+#install(TARGETS mongo DESTINATION ${CMAKE_INSTALL_LIBDIR}/lua/${ver})
+install(TARGETS mongo DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 enable_testing()
 find_program(LUA_COMMAND NAMES ${lua})
