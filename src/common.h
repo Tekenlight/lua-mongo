@@ -26,6 +26,14 @@
 #include <mongoc/mongoc.h>
 #include <bson/bson.h>
 
+#define DEBUGPOINT(...) { \
+	char fpath[256]; \
+	fflush(stdout); \
+    basename_r(__FILE__,fpath); printf("[%p][%s:%d] Reached:",(void*)pthread_self(), fpath, __LINE__); \
+    printf(__VA_ARGS__);fflush(stdout); fflush(stdout); \
+}
+
+
 #ifndef _WIN32
 #pragma GCC visibility push(hidden)
 #endif
