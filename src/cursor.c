@@ -77,14 +77,18 @@ void pushCursor(lua_State *L, mongoc_cursor_t *cursor, int pidx) {
 int iterateCursor(lua_State *L, mongoc_cursor_t *cursor, int hidx) {
 	const bson_t *bson;
 	bson_error_t error;
+	//DEBUGPOINT("Here\n");
 	if (mongoc_cursor_next(cursor, &bson)) {
+		//DEBUGPOINT("Here\n");
 		pushBSON(L, bson, hidx);
 		return 1;
 	}
 	if (mongoc_cursor_error(cursor, &error)) {
+		//DEBUGPOINT("Here %s\n", error.message);
 		checkStatus(L, !hidx, &error); /* Throw exception if unpacking */
 		return commandError(L, &error);
 	}
+	//DEBUGPOINT("Here\n");
 	lua_pushnil(L);
 	return 1;
 }

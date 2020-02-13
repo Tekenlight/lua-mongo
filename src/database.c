@@ -32,6 +32,19 @@ static int m_addUser(lua_State *L) {
 	return commandStatus(L, mongoc_database_add_user(database, username, password, roles, extra, &error), &error);
 }
 
+/*
+static int m_createIndex(lua_State *L) {
+	mongoc_database_t *database = checkDatabase(L, 1);
+	const char *collname = luaL_checkstring(L, 2);
+	bson_t *options = toBSON(L, 3);
+	bson_error_t error;
+	mongoc_collection_t *collection = mongoc_collection_create_index(database, collname, options, &error);
+	if (!collection) return commandError(L, &error);
+	pushCollection(L, collection, false, 1);
+	return 1;
+}
+*/
+
 static int m_createCollection(lua_State *L) {
 	mongoc_database_t *database = checkDatabase(L, 1);
 	const char *collname = luaL_checkstring(L, 2);
